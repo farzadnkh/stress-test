@@ -1,0 +1,6 @@
+k6-results/
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
