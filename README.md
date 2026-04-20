@@ -1,23 +1,35 @@
-﻿# Stress & Performance Test Configs
+﻿# Stress & Performance QA Suite
 
-Performance-testing assets for load and stress validation of backend services.
+![QA Focus](https://img.shields.io/badge/QA-Performance%20Engineering-1f6feb)
+![Tools](https://img.shields.io/badge/Tools-k6%20%7C%20JMeter-informational)
+![Goal](https://img.shields.io/badge/Goal-Reliability%20at%20Scale-blue)
+![Security](https://img.shields.io/badge/Public%20Data-Sanitized-success)
 
-## QA Focus
+Versioned stress/performance test configurations for capacity and resilience validation.
 
-- Load behavior under concurrency
-- Stability under prolonged pressure
-- Early detection of bottlenecks and degradation
+## Architecture Overview
 
-## Repository Purpose
+```mermaid
+flowchart TD
+  S[Test Scenarios] --> L[Load Generator]
+  L --> A[Target APIs / Services]
+  A --> M[Metrics & Logs]
+  M --> T[Threshold Assertions]
+  T --> G[Go / No-Go Release Signal]
+```
 
-This repository stores versioned stress-test configuration files and scenarios that can be run in CI or pre-release environments.
+## Test Strategy
 
-## Example Use Cases
+- **Baseline tests:** establish normal throughput/latency profile
+- **Stress tests:** find bottlenecks and breakpoints
+- **Soak tests:** long-run stability and memory/resource drift
+- **Regression performance:** compare results between releases
+- **Risk reporting:** actionable pass/fail thresholds for release decisions
 
-- Baseline performance checks before release
-- Regression detection for API latency/throughput
-- Capacity planning experiments
+## Usage
+
+Use these scenarios in CI or pre-release environments with environment-specific variables and secret managers.
 
 ## Security Note
 
-No production secrets should be committed. Use environment variables or secret managers in CI pipelines.
+Never commit environment secrets, auth headers, or production endpoints with credentials.
